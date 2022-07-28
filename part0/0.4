@@ -1,1 +1,22 @@
+note over browser:
+user writes "New note" on 'query box' -element and presses submit 
+end note
 
+browser->server: HTTP POST https://studies.cs.helsinki.fi/exampleapp/new_note
+browser->server: HTTP GET https://studies.cs.helsinki.fi/exampleapp/notes
+server-->browser: HTML-code
+browser->server: HTTP GET https://studies.cs.helsinki.fi/examplesapp/main.css
+server-->browser: main.css
+browser->server: HTTP GET https://studies.cs.helsinki.fi/exampleapp/main.js
+server-->browser: main.js
+
+note over browser:
+browser executes javascript code that asks for json data from the server
+end note
+
+browser->server: HTTP GET https://studies.cs.helsinki.fi/exampleapp/data.json
+server-->browser: [..., { content: "New Note", date: "2020 7 28" }]
+
+note over browser:
+browser runs event handler which renders notes to the screen
+end note
